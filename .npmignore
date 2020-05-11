@@ -104,4 +104,4 @@ dist
 .tern-port
 
 # local builds of the example site
-example-site/public/
+example-site/

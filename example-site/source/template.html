@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{ title }}</title>
+	<meta name="description" content="{{ constants.description }}">
+
+	<link rel="stylesheet" href="/normalize.css">
+	<link rel="stylesheet" href="/github-markdown.css">
+	<link rel="stylesheet" href="/github-markdown-fullscreen.css">
+</head>
+
+<body>
+	<article class="markdown-body">
+		<div>
+			<div style="float:left;">
+				<b><a href="/">{{ constants.siteName }}</a></b>
+			</div>
+			<div style="float:right">
+				<a target="_blank" href="https://example.com">Example Link</a>
+			</div>
+		</div>
+		<br>
+		<hr>
+		{{{ article }}}
+	</article>
+</body>
+
+</html>

@@ -9,7 +9,7 @@ npm i -g static-markdown
 ## Usage
 
 1. Enter a project directory
-2. Run `static-markdown`
+2. Run `static-markdown` (the old `public` folder will be deleted)
 3. Use your site out of the `public` folder
 
 ## Example Site

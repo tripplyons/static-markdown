@@ -1,8 +1,6 @@
-Title of Page
-# Your Markdown Here
+Index Page
+# Index Page
 
-```
-Code
-```
-
-**bold** or whatever
+- [/folder](/folder)
+- [/folder/fileinfolder](/folder/fileinfolder)
+- [/folder/doublefolder](/folder/doublefolder)

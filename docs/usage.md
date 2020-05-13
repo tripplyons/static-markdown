@@ -21,8 +21,11 @@ Check the `example-site` directory for an example or continue reading to see how
 ```
 project
 ├── pages
+│   ├── whatever-folder
+│   │   ├── index.md
+│   │   └── whatever-post.md
 │   ├── index.md
-│   └── *.md
+│   └── whatever-post.md
 ├── source
 │   ├── constants.json
 │   └── template.html
@@ -41,7 +44,27 @@ Title of page
 ...
 ```
 
-`index.md` is a special page, and refers to the root page of the website.
+`index.md` is a special page, and refers to the root of the folder it is in.
+
+With our previous example:
+
+```
+└── pages
+    ├── whatever-folder
+    │   ├── index.md
+    │   └── whatever-post.md
+    ├── index.md
+    └── whatever-post.md
+```
+
+Makes the following URLs
+
+```
+/
+/whatever-post/
+/whatever-folder/
+/whatever-folder/whatever-post/
+```
 
 ### Source Directory
 

@@ -89,10 +89,11 @@ async function main() {
     }
     let template = Handlebars.compile(templateFile)
 
+    let articlePaths
     // find all articles
     try {
-        let articlePaths = await findFiles('pages')
-        console.log(articlePaths)
+        articlePaths = await findFiles('pages')
+        // console.log(articlePaths)
     } catch(e) {
         error('Could not find pages/')
         return

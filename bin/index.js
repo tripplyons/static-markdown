@@ -13,15 +13,21 @@ function error(message) {
 }
 
 async function renderArticle(articlePath, template, constants) {
+    // each line
     let articleLines = fs.readFileSync(articlePath, {
         encoding: 'utf8'
     }).split('\n')
+
+    // first line becomes metadata
     let articleMetadata = JSON.parse(articleLines.shift())
+
+    // others are the content
     let articleFile = articleLines.join('\n')
 
     let extentionParts = articlePath.split('.')
     let extension = extentionParts[extentionParts.length - 1]
 
+    // the HTML version of the article before templating
     let article = ''
     if(extension === 'html') {
         article = articleFile
@@ -29,15 +35,15 @@ async function renderArticle(articlePath, template, constants) {
         article = marked(articleFile)
     }
 
+    // the final article
     let result = template({
         article: article,
         metadata: articleMetadata,
         constants: constants
     })
 
-
+    // find where to output it
     let folder = articlePath.split('.' + extension)[0].split('pages/')[1]
-    console.log(folder)
     if (articlePath.endsWith('index.' + extension)) {
         await fs.outputFile('public/'+folder+'.html', result)
     } else {

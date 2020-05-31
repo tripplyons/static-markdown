@@ -6,11 +6,18 @@
 npm i -g static-markdown
 ```
 
-## Usage
+## Basic Usage
 
 1. Enter a project directory
 2. Run `static-markdown` (the old `public` folder will be deleted)
 3. Your site is usable in the `public` folder
+
+## Full CLI
+
+- `static-markdown` runs static-markdown on the current directory
+- `static-markdown path/to/folder` runs static-markdown on a given folder
+- `static-markdown -v` and `static-markdown --version` tell you which version of `static-markdown` is in use
+- `static-markdown -h` and `static-markdown --help` give a help message
 
 ## Example Site
 

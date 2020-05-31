@@ -105,5 +105,11 @@ dist
 
 # static-markdown ignores
 
-# the example site
+# the examples
 example-site/
+example-program/
+example-screenshot.png
+
+# documentation
+TODO.md
+docs/

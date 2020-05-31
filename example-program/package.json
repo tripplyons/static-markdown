@@ -1,0 +1,15 @@
+{
+    "name": "example-program",
+    "version": "1.0.0",
+    "description": "An example program for static-markdown",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node index.js"
+    },
+    "keywords": [
+        "example"
+    ],
+    "author": "Tripp Lyons",
+    "license": "MIT"
+}

@@ -16,18 +16,29 @@ async function renderArticle(articlePath, template, constants) {
     let articleLines = fs.readFileSync(articlePath, {
         encoding: 'utf8'
     }).split('\n')
-    let articleTitle = articleLines.shift()
+    let articleMetadata = JSON.parse(articleLines.shift())
     let articleFile = articleLines.join('\n')
-    let article = marked(articleFile)
+
+    let extentionParts = articlePath.split('.')
+    let extension = extentionParts[extentionParts.length - 1]
+
+    let article = ''
+    if(extension === 'html') {
+        article = articleFile
+    } else {
+        article = marked(articleFile)
+    }
 
     let result = template({
         article: article,
-        title: articleTitle,
+        metadata: articleMetadata,
         constants: constants
     })
 
-    let folder = articlePath.split('.md')[0].split('pages/')[1]
-    if (articlePath.endsWith('index.md')) {
+
+    let folder = articlePath.split('.' + extension)[0].split('pages/')[1]
+    console.log(folder)
+    if (articlePath.endsWith('index.' + extension)) {
         await fs.outputFile('public/'+folder+'.html', result)
     } else {
         await fs.outputFile('public/'+folder + '/index.html', result)
@@ -51,7 +62,7 @@ async function findSubdirs(path) {
 async function findFiles(path) {
     let contents = await fs.readdir(path)
     let dirs = contents.filter(content => !content.includes('.'))
-    let files = contents.filter(content => content.endsWith('.md'))
+    let files = contents.filter(content => content.endsWith('.md') || content.endsWith('.html'))
 
     let paths = []
 

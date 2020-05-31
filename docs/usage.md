@@ -10,11 +10,11 @@ npm i -g static-markdown
 
 1. Enter a project directory
 2. Run `static-markdown` (the old `public` folder will be deleted)
-3. Use your site out of the `public` folder
+3. Your site is usable in the `public` folder
 
 ## Example Site
 
-Check the `example-site` directory for an example or continue reading to see how to lay out a folder for `static-markdown`.
+Check the `example-site` directory for an example or continue reading to see how to use `static-markdown`.
 
 ## Project Directory Layout
 
@@ -22,42 +22,55 @@ Check the `example-site` directory for an example or continue reading to see how
 project
 ├── pages
 │   ├── whatever-folder
-│   │   ├── index.md
+│   │   ├── index.html
 │   │   └── whatever-post.md
 │   ├── index.md
-│   └── whatever-post.md
+│   └── whatever-post.html
 ├── source
 │   ├── constants.json
 │   └── template.html
 └── static
-    └── *
+    ├── resource.png
+    ├── favicon.ico
+    ├── style.css
+    └── folder
+        └── ...
 ```
 
 ### Pages Directory
 
-Pages are in the form of:
+Markdown pages are in the form of:
 
-```
-Title of page
+```markdown
+{ title: "Title of page", otherMetadata: "whatever" }
 # Markdown
 **More** markdown
 ...
 ```
 
-`index.md` is a special page, and refers to the root of the folder it is in.
+And HTML pages are in the form of:
+
+```html
+{ title: "Title of page", otherMetadata: "whatever" }
+<h1>HTML</h1>
+<b>More</b> HTML
+...
+```
+
+`index.md` and `index.html` are special pages, and refer to the root of the folder it is in.
 
 With our previous example:
 
 ```
-└── pages
-    ├── whatever-folder
-    │   ├── index.md
-    │   └── whatever-post.md
-    ├── index.md
-    └── whatever-post.md
+pages
+├── whatever-folder
+│   ├── index.html
+│   └── whatever-post.md
+├── index.md
+└── whatever-post.html
 ```
 
-Makes the following URLs
+Makes the following URLs:
 
 ```
 /
@@ -65,6 +78,8 @@ Makes the following URLs
 /whatever-folder/
 /whatever-folder/whatever-post/
 ```
+
+Notice that `folder/index.html` is equivalent to `folder.html`.
 
 ### Source Directory
 
@@ -74,9 +89,9 @@ Defines variables for `template.html` to use.
 
 #### source/template.html
 
-Here is an example `template.html` taken from `example-site/source/template.html`.
+Here is an example `template.html` taken from `example-site/source/template.html`:
 
-```
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -84,7 +99,7 @@ Here is an example `template.html` taken from `example-site/source/template.html
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>{{ title }}</title>
+	<title>{{ metadata.title }}</title>
 	<meta name="description" content="{{ constants.description }}">
 
 	<link rel="stylesheet" href="/normalize.css">
@@ -111,17 +126,41 @@ Here is an example `template.html` taken from `example-site/source/template.html
 </html>
 ```
 
-The file can refer to local resources in the `static` folder just by using their path (not including `static/`).
+It also can use constants defined in `source/constants.json` using [handlebars](https://handlebarsjs.com/guide/). Here is an example of using a constant called description in the above file:
 
-It also can use constants defined in `source/constants.json` using [handlebars](https://handlebarsjs.com/guide/). Here is an example of using a constant called description in the above file.
-```
+```html
 <meta name="description" content="{{ constants.description }}">
 ```
 
-There are two special variables that can be used in templating:
-- `title` refers to the first line of the markdown page
-- `article` refers to the HTML output of the markdown (remember to use `{{{ article }}}` to get HTML instead of text)
+Similarly, JSON Metadata from the first line of each article can me used with `metadata.nameOfVariable`:
 
+```html
+<title>{{ metadata.title }}</title>
+```
+
+There is one special variable that can be used in templating:
+- `article` refers to the HTML output of the markdown (remember to use `{{{ article }}}` to get the HTML output instead of text)
+
+### Static Directory
+
+Example Layout:
+
+```
+static
+├── normalize.css
+├── standard-html-page.html
+└── logo.png
+```
+
+This folder's contents are copied to the public folder so other files can reference them.
+
+It can also be used to have pages that do not go through `static-markdown`.
+
+You can reference them as if they were at the root of your site:
+
+```html
+<link rel="stylesheet" href="/normalize.css">
+```
 
 ---
 

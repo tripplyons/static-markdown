@@ -1,9 +1,16 @@
 # static-markdown
-Generate static sites using markdown
+Generate static sites using markdown or just HTML ([Usage](docs/usage.md))
 
-Screenshot:
-![A screenshot of static-markdown](example-screenshot.png)
+## Features
 
-## Usage
+- Markdown Conversion
+- Templating and Article Metadata
+- Nested Directories
+- And more to come (See [TODO.md](TODO.md))
 
-See `docs/usage.md`.
+## Live Example
+
+I used it to make my website ([tripplyons.com](https://tripplyons.com/)).
+
+## Screenshot:
+![A screenshot of a static-markdown generated website](example-screenshot.png)

@@ -1,0 +1,4 @@
+- Move internals to `/index.js` and make it a module
+- Allow multiple templates
+- Support paths other than the root of a website
+- Make a website for the project

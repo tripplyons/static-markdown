@@ -9,7 +9,7 @@ function error(message) {
     return message
 }
 
-async function renderArticle(dir, articlePath, template, constants) {
+async function renderArticle(dir, articlePath, constants) {
     // each line
     let articleLines = fs.readFileSync(articlePath, {
         encoding: 'utf8'
@@ -18,7 +18,20 @@ async function renderArticle(dir, articlePath, template, constants) {
     // first line becomes metadata
     let articleMetadata = JSON.parse(articleLines.shift())
 
-    // others are the content
+    // {"template": "template"} by default
+    let templateToUse = articleMetadata.template || 'template'
+    // load template
+    let templateFile
+    try {
+        templateFile = await fs.readFile(path.join(dir, `source/${templateToUse}.html`), {
+            encoding: 'utf8'
+        })
+    } catch (e) {
+        return error(`Could not find source/${templateToUse}.html`)
+    }
+    let template = Handlebars.compile(templateFile)
+
+    // most lines are the content
     let articleFile = articleLines.join('\n')
 
     let extentionParts = articlePath.split('.')
@@ -90,17 +103,6 @@ async function main(dir) {
         return error('Could not find static/')
     }
 
-    // load template
-    let templateFile
-    try {
-        templateFile = await fs.readFile(path.join(dir, 'source/template.html'), {
-            encoding: 'utf8'
-        })
-    } catch (e) {
-        return error('Could not find source/template.html')
-    }
-    let template = Handlebars.compile(templateFile)
-
     let articlePaths
     // find all articles
     try {
@@ -128,7 +130,7 @@ async function main(dir) {
 
     // go through each article
     for (let articleFileNumber in articlePaths) {
-        renderArticle(dir, articlePaths[articleFileNumber], template, constants)
+        renderArticle(dir, articlePaths[articleFileNumber], constants)
     }
 }
 

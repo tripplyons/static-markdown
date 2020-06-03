@@ -10,7 +10,7 @@ npm i -g static-markdown
 
 1. Enter a project directory
 2. Run `static-markdown` (the old `public` folder will be deleted)
-3. Your site is usable in the `public` folder
+3. Your site contents can be found in the `public` folder (a static site)
 
 ## Full CLI
 
@@ -21,7 +21,7 @@ npm i -g static-markdown
 
 ## Example Site
 
-Check the `example-site` directory for an example or continue reading to see how to use `static-markdown`.
+Check the `example-site` directory for an example or continue reading for more on how to use `static-markdown`.
 
 ## Project Directory Layout
 
@@ -35,7 +35,8 @@ project
 │   └── whatever-post.html
 ├── source
 │   ├── constants.json
-│   └── template.html
+│   ├── template.html
+│   └── anotherTemplate.html
 └── static
     ├── resource.png
     ├── favicon.ico
@@ -49,7 +50,7 @@ project
 Markdown pages are in the form of:
 
 ```markdown
-{ title: "Title of page", otherMetadata: "whatever" }
+{ "title": "Title of page", "template": "template" }
 # Markdown
 **More** markdown
 ...
@@ -58,11 +59,17 @@ Markdown pages are in the form of:
 And HTML pages are in the form of:
 
 ```html
-{ title: "Title of page", otherMetadata: "whatever" }
+{ "title": "Title of page", "template": "template" }
 <h1>HTML</h1>
 <b>More</b> HTML
 ...
 ```
+
+In this example, the `title` field is arbitrary.
+You can use any name for your variables.
+The one special metadata parameter is `template`.
+This determines which HTML template is used to generate the HTML page.
+Its default value is `template`, which refers to `source/template.html`.
 
 `index.md` and `index.html` are special pages, and refer to the root of the folder it is in.
 
@@ -86,7 +93,7 @@ Makes the following URLs:
 /whatever-folder/whatever-post/
 ```
 
-Notice that `folder/index.html` is equivalent to `folder.html`.
+Notice that `folder/index.html` is equivalent to `folder.html`, and `index.md` is located at `/`.
 
 ### Source Directory
 
@@ -94,9 +101,9 @@ Notice that `folder/index.html` is equivalent to `folder.html`.
 
 Defines variables for `template.html` to use.
 
-#### source/template.html
+#### source/{templateName}.html
 
-Here is an example `template.html` taken from `example-site/source/template.html`:
+Here is an example HTML template taken from `example-site/source/template.html`:
 
 ```html
 <!DOCTYPE html>
@@ -133,16 +140,16 @@ Here is an example `template.html` taken from `example-site/source/template.html
 </html>
 ```
 
-It also can use constants defined in `source/constants.json` using [handlebars](https://handlebarsjs.com/guide/). Here is an example of using a constant called description in the above file:
-
-```html
-<meta name="description" content="{{ constants.description }}">
-```
-
-Similarly, JSON Metadata from the first line of each article can me used with `metadata.nameOfVariable`:
+JSON Metadata from the first line of each article can me used with `metadata.nameOfVariable` using [handlebars](https://handlebarsjs.com/guide/):
 
 ```html
 <title>{{ metadata.title }}</title>
+```
+
+You can also use constants defined in `source/constants.json`.
+
+```html
+<meta name="description" content="{{ constants.description }}">
 ```
 
 There is one special variable that can be used in templating:
@@ -154,19 +161,19 @@ Example Layout:
 
 ```
 static
-├── normalize.css
+├── style.css
 ├── standard-html-page.html
 └── logo.png
 ```
 
 This folder's contents are copied to the public folder so other files can reference them.
 
-It can also be used to have pages that do not go through `static-markdown`.
+It can also be used to store pages that do not get converted by `static-markdown`.
 
-You can reference them as if they were at the root of your site:
+You can reference assets as if they were at the root of your site:
 
 ```html
-<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/style.css">
 ```
 
 ---

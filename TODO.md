@@ -1,3 +1,2 @@
-- Allow multiple templates
-- Support paths other than the root of a website
+- Document how to use paths other than the root of a website (with constants)
 - Make a website for the project

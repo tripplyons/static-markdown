@@ -1,4 +1,4 @@
-{"title": "Index Page"}
+{"title": "Index Page", "template": "mainPageTemplate"}
 # Index Page
 
 - [/html-page](/html-page)

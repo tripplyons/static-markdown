@@ -1,7 +1,3 @@
-{"title": "Index Page", "template": "mainPageTemplate"}
-# Index Page
-
-- [/html-page](/html-page)
-- [/folder](/folder)
-- [/folder/fileinfolder](/folder/fileinfolder)
-- [/folder/doublefolder](/folder/doublefolder)
+{"title": "Name Of Website"}
+# Name of Website
+This is the index page

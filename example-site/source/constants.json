@@ -1,4 +1,14 @@
 {
-	"siteName": "Example Site",
-	"description": "An example site for static-markdown"
+	"siteName": "Name of Website",
+	"description": "Description of website",
+    "links": [
+        {
+            "href": "/html-page",
+            "title": "HTML Page"
+        }, {
+            "href": "https://example.com/",
+            "title": "External Page"
+        }
+    ],
+    "root": ""
 }

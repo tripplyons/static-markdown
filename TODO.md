@@ -1,2 +1,3 @@
-- Document how to use paths other than the root of a website (with constants)
 - Make a website for the project
+- Document Vercel Deployment
+- Add to https://www.staticgen.com/

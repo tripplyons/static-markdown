@@ -105,3 +105,6 @@ dist
 
 # local builds of the example site
 example-site/public/
+
+# local build of each theme
+themes/github/public/

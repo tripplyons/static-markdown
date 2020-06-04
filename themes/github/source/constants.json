@@ -1,0 +1,11 @@
+{
+	"siteName": "Name of Website",
+	"description": "Description of website",
+    "links": [
+        {
+            "href": "https://example.com",
+            "title": "Example Link"
+        }
+    ],
+    "root": ""
+}

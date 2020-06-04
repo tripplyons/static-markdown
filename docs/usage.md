@@ -2,7 +2,7 @@
 
 ## Installation
 
-```
+```shell
 npm i -g static-markdown
 ```
 
@@ -47,12 +47,15 @@ project
 
 ### Pages Directory
 
+Markdown pages **can** contain HTML.
+
 Markdown pages are in the form of:
 
 ```markdown
 { "title": "Title of page", "template": "template" }
 # Markdown
 **More** markdown
+<i>HTML tags work</i>
 ...
 ```
 
@@ -62,6 +65,7 @@ And HTML pages are in the form of:
 { "title": "Title of page", "template": "template" }
 <h1>HTML</h1>
 <b>More</b> HTML
+<i>HTML tags work</i>
 ...
 ```
 
@@ -140,7 +144,9 @@ Here is an example HTML template taken from `example-site/source/template.html`:
 </html>
 ```
 
-JSON Metadata from the first line of each article can me used with `metadata.nameOfVariable` using [handlebars](https://handlebarsjs.com/guide/):
+You can use [handlebars](https://handlebarsjs.com/guide/) for templating variables and other features supported by handlebars.
+
+JSON Metadata from the first line of each article can me used with `metadata.nameOfVariable`:
 
 ```html
 <title>{{ metadata.title }}</title>
@@ -174,6 +180,12 @@ You can reference assets as if they were at the root of your site:
 
 ```html
 <link rel="stylesheet" href="/style.css">
+```
+
+If you want a different root, you can take advantage of constants.
+
+```html
+<link rel="stylesheet" href="{{ root }}/style.css">
 ```
 
 ---

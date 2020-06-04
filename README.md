@@ -1,5 +1,5 @@
 # static-markdown
-Generate static sites using markdown or just HTML ([Usage and CLI](docs/usage.md), [API](docs/api.md))
+Generate static sites using markdown or HTML ([Usage and CLI](docs/usage.md), [API](docs/api.md))
 
 ## Features
 

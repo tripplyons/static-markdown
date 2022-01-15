@@ -30,6 +30,6 @@
   "dependencies": {
     "fs-extra": "^9.0.0",
     "handlebars": "^4.7.6",
-    "marked": "^1.0.0"
+    "marked": "^4.0.10"
   }
 }

@@ -12,10 +12,6 @@ Generate static sites using markdown or HTML ([Usage and CLI](docs/usage.md), [A
 - Pre-made themes
 - And more to come (See [TODO.md](TODO.md))
 
-## Live Example
-
-I used it to make my website, ([tripplyons.com](https://tripplyons.com/)).
-
 ## Themes
 
 If you would like to add a theme, please create a pull request.
